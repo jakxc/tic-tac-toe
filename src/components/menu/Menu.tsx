@@ -2,14 +2,14 @@ import { useState } from 'react'
 import './Menu.css'
 
 type Props = {
-    onAction(action: 'reset' | 'new-round') : void
+    onAction(action: 'reset-game' | 'reset-all') : void
 }
 
 const Menu = ({ onAction }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="menu" data-id="menu">
+        <div className="menu">
             <button className="menu-btn" onClick={() => setIsOpen(prev => !prev)}>
                 Actions
                 {isOpen
@@ -19,14 +19,14 @@ const Menu = ({ onAction }: Props) => {
             </button>
 
             {isOpen && (
-                <div className="items border" data-id="menu-items">
+                <div className="items border">
                     <button onClick={() => { 
-                                            onAction('reset') 
+                                            onAction('reset-game') 
                                             setIsOpen(prev => !prev) 
-                    }}>Reset</button>
-                    <button onClick={() => {onAction('new-round')
+                    }}>Reset Game</button>
+                    <button onClick={() => {onAction('reset-all')
                                             setIsOpen(prev => !prev)
-                    }}>New Round</button>
+                    }}>Reset History</button>
                 </div>
             )}
         </div>

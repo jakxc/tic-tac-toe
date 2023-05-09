@@ -7,25 +7,27 @@ import Scoreboard from "./components/scoreboard/Scoreboard";
 import Footer from "./components/footer/Footer";
 import { deriveStats, deriveGame } from "./utils";
 import { GameState, Player } from "./types";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
+const initialState: GameState = {
+    currentGameMoves: [],
+    history: {
+      currentRoundGames: [],
+      allGames: [],
+    },
+};
 
 
 const App = () => {
-    const [state, setState] = useState<GameState>(
-        {
-            currentGameMoves: [], // All the player moves for the active game
-            history: {
-                currentRoundGames: [],
-                allGames: [],
-            }
-        }
-    );
+    const [state, setState] = useLocalStorage("game-state-key", initialState);
 
     const game = deriveGame(state);
     const stats = deriveStats(state);
 
-    const resetGame = (isNewRound: boolean) => {
+    const resetGame = (resetAll: boolean) => {
         setState((prevState) => {
           const stateClone = structuredClone(prevState);
+          
           // If game is complete, archive it to history object
           if (game.status.isComplete) {
             const { moves, status } = game;
@@ -38,7 +40,7 @@ const App = () => {
           stateClone.currentGameMoves = [];
     
           // Must archive current round in addition to resetting current game
-          if (isNewRound) {
+          if (resetAll) {
             stateClone.history.allGames.push(...stateClone.history.currentRoundGames);
             stateClone.history.currentRoundGames = [];
           }
@@ -103,7 +105,7 @@ const App = () => {
                 </div>
                     <Menu  
                         onAction={(action) => {
-                            resetGame(action === "new-round");
+                            resetGame(action === "reset-all");
             }        }/>
                     {gridElements}
                     <Scoreboard 
