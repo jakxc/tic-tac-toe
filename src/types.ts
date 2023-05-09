@@ -1,32 +1,31 @@
-export type Player = {
+type Player = {
     id: number;
     name: string;
     iconClass: string;
     colorClass: string;
 };
   
-export type Move = {
+type Move = {
     player: Player;
     squareId: number; // from 1-9, represents square on game board
 };
   
-export type GameStatus = {
+type GameStatus = {
     isComplete: boolean;
     winner: Player | null; // If null and game is complete, is a tie
   };
   
-export type Game = {
+type Game = {
     moves: Move[];
     status: GameStatus;
 };
   
-  // Below is the game state object that will be in localStorage
-  // -----------------------------------------------------------------
-  
-export type GameState = {
+type GameState = {
     currentGameMoves: Move[];
     history: {
       currentRoundGames: Game[];
       allGames: Game[];
     };
 };
+
+export type { Player, Move, GameStatus, Game, GameState }

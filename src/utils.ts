@@ -18,7 +18,6 @@ const players: Player[] = [
 
 const deriveGame = (state: GameState) => {
     const currentPlayer = players[state.currentGameMoves.length % 2];
-    const nextPlayer = players[(state.currentGameMoves.length + 1) % 2];
   
     const winningPatterns = [
       [1, 2, 3],
@@ -39,7 +38,7 @@ const deriveGame = (state: GameState) => {
         .map((move) => move.squareId);
   
       for (const pattern of winningPatterns) {
-        if (pattern.every((v) => selectedSquareIds.includes(v))) {
+        if (pattern.every((el) => selectedSquareIds.includes(el))) {
           winner = player;
         }
       }
@@ -58,7 +57,7 @@ const deriveGame = (state: GameState) => {
 
 const deriveStats = (state: GameState) => {
     return {
-        playerWithStats: players.map((player: Player) => {
+        playersStats: players.map((player: Player) => {
           const wins = state.history.currentRoundGames.filter(
             (game) => game.status.winner?.id === player.id
           ).length;

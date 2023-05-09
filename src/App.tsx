@@ -4,8 +4,10 @@ import classNames from "classnames";
 import Menu from "./components/menu/Menu";
 import Modal from "./components/modal/Modal";
 import Scoreboard from "./components/scoreboard/Scoreboard";
+import Footer from "./components/footer/Footer";
 import { deriveStats, deriveGame } from "./utils";
 import { GameState, Player } from "./types";
+
 
 const App = () => {
     const [state, setState] = useState<GameState>(
@@ -93,7 +95,7 @@ const App = () => {
         <>
             <main>
                 <div className="grid-container">
-                <div className={classNames("turn", game.currentPlayer.colorClass)}>
+                <div key={game.currentPlayer.id} className={classNames("turn", game.currentPlayer.colorClass)}>
                     <i
                     className={classNames("fa-solid", game.currentPlayer.iconClass)}
                     ></i>
@@ -105,12 +107,13 @@ const App = () => {
             }        }/>
                     {gridElements}
                     <Scoreboard 
-                        playerOneWins = {stats.playerWithStats[0].wins}
-                        playerTwoWins = {stats.playerWithStats[1].wins}
+                        playerOneWins = {stats.playersStats[0].wins}
+                        playerTwoWins = {stats.playersStats[1].wins}
                         ties = {stats.ties}
                     />
                 </div>
             </main>
+            <Footer />
             {game.status.isComplete && (
                 <Modal
                     message={

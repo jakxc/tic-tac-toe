@@ -60,6 +60,7 @@ button:hover {
 
 .grid-container {
     display: grid;
+    justify-content: center;
     grid-template-columns: repeat(3, 80px);
     grid-template-rows: 50px repeat(3, 80px) 60px;
     gap: 5px;
@@ -98,7 +99,7 @@ button:hover {
     transform: scale(1);
   }
   25% {
-    transform: scale(1.4);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
@@ -122,28 +123,9 @@ button:hover {
 
 .square:hover {
   cursor: pointer;
-  opacity: 80%;
+  opacity: 50%;
 }
 
-/* Score content styles */
-
-.score {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.score p {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.score span {
-  font-size: 12px;
-  margin-top: 2px;
-}
 
 @media (min-width: 768px) {
   .grid-container {
