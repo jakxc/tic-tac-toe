@@ -1,4 +1,4 @@
-import './Scoreboard.css'
+import './index.css'
 
 type Props = {
     playerOneWins: number,

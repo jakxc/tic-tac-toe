@@ -1,5 +1,5 @@
+import './index.css'
 import { useState } from 'react'
-import './Menu.css'
 
 type Props = {
     onAction(action: 'reset-game' | 'reset-all') : void

@@ -1,4 +1,4 @@
-import './Footer.css'
+import './index.css'
 import logo from '../../images/jakxc-logo-color.png';
 import linkedIn from '../../images/linkedIn-icon.svg';
 import github from '../../images/github-icon.png';

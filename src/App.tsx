@@ -1,10 +1,9 @@
 import "./App.css";
-import { useState } from "react";
 import classNames from "classnames";
-import Menu from "./components/menu/Menu";
-import Modal from "./components/modal/Modal";
-import Scoreboard from "./components/scoreboard/Scoreboard";
-import Footer from "./components/footer/Footer";
+import Menu from "./components/Menu";
+import Modal from "./components/Modal";
+import Scoreboard from "./components/Scoreboard";
+import Footer from "./components/Footer";
 import { deriveStats, deriveGame } from "./utils";
 import { GameState, Player } from "./types";
 import { useLocalStorage } from "./hooks/useLocalStorage";
